@@ -1,6 +1,7 @@
 import datetime
 import sys
 
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
 from Book.models import Book, Category, Author
@@ -135,8 +136,46 @@ class BookOperations(View):
             except:
                 print('Oops! ', sys.exc_info()[0], ' Occured')
 
-    def getMostBooksSoldByAuthor(self,name):
-        authorObject = Author.objects.get(AuthorName = name)
-        bookObject = Book.objects.filter(Author_exact = name)
-        for i in bookObject:
-            print(i)
+    def getMostBooksSoldByAuthor(self,authorId):
+        bookObject = Book.objects.filter(Author_id = authorId)
+        if bookObject.exists():
+            max = bookObject[0]
+            for i in bookObject:
+                if i.SoldCount > max.SoldCount:
+                    max = i
+            print('Most book sold by Author is : ',max)
+        else:
+            print('Author Id does not exist')
+
+    def getMostBooksSoldByCategory(self,categoryId):
+        bookObject = Book.objects.filter(Category_id = categoryId)
+        if bookObject.exists():
+            max = bookObject[0]
+            for i in bookObject:
+                if i.SoldCount > max.SoldCount:
+                    max = i
+            print('Most book sold by Category is : ',max)
+        else:
+            print('Category Id does not exist')
+
+    def searchBook(self,searchString):
+        print('Searching string in AuthorName, CategoryName and Book Title')
+        authorObject = Author.objects.filter(AuthorName__icontains = searchString)
+        categoryObject = Category.objects.filter(CategoryName__icontains = searchString)
+        booksFound = Book.objects.filter(Q(Category__in = categoryObject) | Q(Author__in = authorObject) | Q(Title__icontains = searchString))
+        if booksFound.count()>0:
+            print('Following books are found basis searchString')
+            print(booksFound)
+        else:
+            print('No books found with the given search string')
+
+    def getBooksByAuthor(self,authorId):
+        try:
+            bookObject = Book.objects.filter(Author_id = authorId)
+            if bookObject.count()>0:
+                for i in bookObject:
+                    print(i)
+            else:
+                print('No books found with given author id')
+        except:
+            print('Oops!', sys.exc_info()[0],' occured')

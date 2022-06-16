@@ -23,7 +23,7 @@ class Category(models.Model):
 
 # Creating Book Model class
 class Book(models.Model):
-    Title = models.CharField(max_length=50, primary_key=True)
+    Title = models.CharField(max_length=50, unique=True)
     Author = models.ForeignKey(Author, on_delete=models.CASCADE)
     Publisher = models.CharField(max_length=50)
     PublishDate = models.DateField()
