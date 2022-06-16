@@ -5,7 +5,7 @@ from django.db import models
 # Creating Author Model class
 class Author(models.Model):
     AuthorName = models.CharField(max_length=30,unique=True)
-    PhoneNumber = models.CharField(max_length=15, primary_key=True)
+    PhoneNumber = models.CharField(max_length=15, unique=True)
     BirthDate = models.DateField()
     DeathDate = models.DateField()
 
