@@ -41,3 +41,15 @@ To run any function, I am using Command line. Below are the steps to run any met
 5. similarly, call the functions mentioned above basis requirements. \
 
 Note: I am using python shell as the main aim of this project was to build APIs. Frontend can be implemented to view the results in more interactive way.\
+
+### Some test screenshots below
+
+![image](https://user-images.githubusercontent.com/42150841/174223997-0f4410a5-382b-468a-8f65-003db4aff032.png)
+
+![image](https://user-images.githubusercontent.com/42150841/174224070-9843526f-2871-4bdd-98f3-d1c0ef739e1a.png)
+
+![image](https://user-images.githubusercontent.com/42150841/174224160-667e86e3-396c-4abe-9042-bbe7cf7899b8.png)
+
+![image](https://user-images.githubusercontent.com/42150841/174224369-099aa6b0-0630-4b37-8b28-b725291b43af.png)
+
+
